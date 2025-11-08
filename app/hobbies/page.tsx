@@ -86,7 +86,7 @@ export default function HobbiesPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 p-6">
+      <nav className="relative z-50 p-4 md:p-6">
         <motion.div
           className="flex justify-between items-center max-w-7xl mx-auto"
           initial={{ opacity: 0, y: -20 }}
@@ -95,13 +95,13 @@ export default function HobbiesPage() {
         >
           <Link href="/">
             <motion.div
-              className="text-2xl font-bold text-white cursor-pointer"
+              className="text-xl md:text-2xl font-bold text-white cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
               Portfolio
             </motion.div>
           </Link>
-          <div className="flex gap-6">
+          <div className="flex gap-2 md:gap-4 lg:gap-6 flex-wrap justify-end">
             {['Projects', 'Experience', 'Education', 'Hobbies', 'Contact'].map((item, index) => (
               <motion.div
                 key={item}
@@ -111,7 +111,7 @@ export default function HobbiesPage() {
               >
                 <Link
                   href={item === 'Experience' ? '/experience' : item === 'Projects' ? '/projects' : item === 'Education' ? '/education' : item === 'Hobbies' ? '/hobbies' : `/${item.toLowerCase()}`}
-                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group ${
+                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-sm md:text-base ${
                     item === 'Hobbies' ? 'text-purple-400' : ''
                   }`}
                 >

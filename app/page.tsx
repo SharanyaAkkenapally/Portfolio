@@ -112,7 +112,7 @@ export default function Home() {
       />
 
       {/* Navigation */}
-      <nav className="relative z-50 p-6">
+      <nav className="relative z-50 p-4 md:p-6">
         <motion.div
           className="flex justify-between items-center max-w-7xl mx-auto"
           initial={{ opacity: 0, y: -20 }}
@@ -120,12 +120,12 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div
-            className="text-2xl font-bold text-white"
+            className="text-xl md:text-2xl font-bold text-white"
             whileHover={{ scale: 1.05 }}
           >
             Portfolio
           </motion.div>
-          <div className="flex gap-6">
+          <div className="flex gap-2 md:gap-4 lg:gap-6 flex-wrap justify-end">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -135,7 +135,7 @@ export default function Home() {
               >
                 <Link
                   href={item.href}
-                  className="relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group"
+                  className="relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-sm md:text-base"
                 >
                   {item.name}
                   <motion.span
