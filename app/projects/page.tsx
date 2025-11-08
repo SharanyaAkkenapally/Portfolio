@@ -353,7 +353,7 @@ export default function ProjectsPage() {
                   {/* Workflow Container */}
                   <div className="relative flex justify-center items-center">
                     {/* Mobile: Vertical Layout, Desktop: Horizontal Layout */}
-                    <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-4 justify-center">
+                    <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-2 justify-center">
                       {projects.map((project, index) => {
                         // Get short title for display
                         const shortTitle = project.title.length > 20 
@@ -380,17 +380,17 @@ export default function ProjectsPage() {
                               {/* Node Container */}
                               <div className="relative">
                                 <div
-                                  className={`w-32 h-32 md:w-48 md:h-48 rounded-xl glass border-3 border-purple-500/60 flex flex-col items-center justify-center bg-gradient-to-br ${project.gradient} bg-opacity-25 hover:bg-opacity-40 transition-all duration-300 shadow-xl shadow-purple-500/30 p-3 md:p-4 relative overflow-hidden`}
+                                  className={`w-28 h-28 md:w-36 md:h-36 rounded-xl glass border-3 border-purple-500/60 flex flex-col items-center justify-center bg-gradient-to-br ${project.gradient} bg-opacity-25 hover:bg-opacity-40 transition-all duration-300 shadow-xl shadow-purple-500/30 p-2 md:p-3 relative overflow-hidden`}
                                 >
                                   {/* Glow effect */}
                                   <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`} />
                                   
                                   {/* Node Content */}
                                   <div className="text-center w-full relative z-10">
-                                    <div className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3 drop-shadow-lg">
+                                    <div className="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg">
                                       {project.id}
                                     </div>
-                                    <div className="text-xs md:text-sm text-purple-100 font-semibold leading-tight px-2 line-clamp-2">
+                                    <div className="text-[10px] md:text-xs text-purple-100 font-semibold leading-tight px-1 line-clamp-2">
                                       {shortTitle}
                                     </div>
                                   </div>
@@ -418,13 +418,13 @@ export default function ProjectsPage() {
                             {/* Workflow Edge/Connection */}
                             {index < projects.length - 1 && (
                               <motion.div
-                                className="relative flex items-center my-2 md:my-0 md:mx-4 z-0"
+                                className="relative flex items-center my-2 md:my-0 md:mx-2 z-0"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                               >
                                 {/* Mobile: Vertical Line, Desktop: Horizontal Line */}
-                                <div className="relative w-2 h-12 md:w-24 md:h-2 overflow-hidden">
+                                <div className="relative w-2 h-12 md:w-12 md:h-2 overflow-hidden">
                                   {/* Main gradient line with glow */}
                                   <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full shadow-lg shadow-purple-500/70" />
                                   <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-full blur-sm opacity-50" />
