@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Mail, Linkedin, Github, Send, MapPin, Phone } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, MapPin, Phone, Menu, X } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -92,7 +93,9 @@ export default function ContactPage() {
               Portfolio
             </motion.div>
           </Link>
-          <div className="flex gap-2 md:gap-4 lg:gap-6 flex-wrap justify-end">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-4 lg:gap-6">
             {['Projects', 'Experience', 'Education', 'Hobbies', 'Contact'].map((item, index) => (
               <motion.div
                 key={item}
@@ -102,7 +105,7 @@ export default function ContactPage() {
               >
                 <Link
                   href={item === 'Experience' ? '/experience' : item === 'Projects' ? '/projects' : item === 'Education' ? '/education' : item === 'Hobbies' ? '/hobbies' : `/${item.toLowerCase()}`}
-                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-sm md:text-base ${
+                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-base ${
                     item === 'Contact' ? 'text-purple-400' : ''
                   }`}
                 >
@@ -115,7 +118,50 @@ export default function ContactPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </motion.div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 overflow-hidden"
+            >
+              <div className="glass rounded-lg border border-purple-500/20 p-4 space-y-3">
+                {['Projects', 'Experience', 'Education', 'Hobbies', 'Contact'].map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item === 'Experience' ? '/experience' : item === 'Projects' ? '/projects' : item === 'Education' ? '/education' : item === 'Hobbies' ? '/hobbies' : `/${item.toLowerCase()}`}
+                      className={`block text-gray-300 hover:text-purple-400 transition-colors duration-300 py-2 text-base ${
+                        item === 'Contact' ? 'text-purple-400' : ''
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Main Content */}

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-import { X, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, Calendar, ChevronDown, ChevronUp, Menu } from 'lucide-react';
 
 const projects = [
   {
@@ -81,6 +81,7 @@ const projects = [
 export default function ProjectsPage() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<'gallery' | 'workflow'>('gallery');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -107,7 +108,9 @@ export default function ProjectsPage() {
               Portfolio
             </motion.div>
           </Link>
-          <div className="flex gap-2 md:gap-4 lg:gap-6 flex-wrap justify-end">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-4 lg:gap-6">
             {['Projects', 'Experience', 'Education', 'Hobbies', 'Contact'].map((item, index) => (
               <motion.div
                 key={item}
@@ -117,7 +120,7 @@ export default function ProjectsPage() {
               >
                 <Link
                   href={item === 'Projects' ? '/projects' : item === 'Experience' ? '/experience' : item === 'Education' ? '/education' : `/${item.toLowerCase()}`}
-                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-sm md:text-base ${
+                  className={`relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-base ${
                     item === 'Projects' ? 'text-purple-400' : ''
                   }`}
                 >
@@ -130,7 +133,50 @@ export default function ProjectsPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </motion.div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 overflow-hidden"
+            >
+              <div className="glass rounded-lg border border-purple-500/20 p-4 space-y-3">
+                {['Projects', 'Experience', 'Education', 'Hobbies', 'Contact'].map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item === 'Projects' ? '/projects' : item === 'Experience' ? '/experience' : item === 'Education' ? '/education' : `/${item.toLowerCase()}`}
+                      className={`block text-gray-300 hover:text-purple-400 transition-colors duration-300 py-2 text-base ${
+                        item === 'Projects' ? 'text-purple-400' : ''
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Main Content */}
@@ -303,10 +349,11 @@ export default function ProjectsPage() {
                 exit={{ opacity: 0 }}
                 className="relative"
               >
-                <div className="relative w-full min-h-[600px] md:min-h-[700px] py-12 overflow-visible">
+                <div className="relative w-full min-h-[400px] md:min-h-[700px] py-12 overflow-visible">
                   {/* Workflow Container */}
                   <div className="relative flex justify-center items-center">
-                    <div className="relative flex items-center gap-0 md:gap-4 flex-wrap justify-center">
+                    {/* Mobile: Vertical Layout, Desktop: Horizontal Layout */}
+                    <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-4 justify-center">
                       {projects.map((project, index) => {
                         // Get short title for display
                         const shortTitle = project.title.length > 20 
@@ -314,7 +361,7 @@ export default function ProjectsPage() {
                           : project.title;
                         
                         return (
-                          <div key={project.id} className="relative flex items-center">
+                          <div key={project.id} className="relative flex flex-col md:flex-row items-center">
                             {/* Workflow Node */}
                             <motion.div
                               className="relative cursor-pointer z-10"
@@ -333,14 +380,14 @@ export default function ProjectsPage() {
                               {/* Node Container */}
                               <div className="relative">
                                 <div
-                                  className={`w-40 h-40 md:w-48 md:h-48 rounded-xl glass border-3 border-purple-500/60 flex flex-col items-center justify-center bg-gradient-to-br ${project.gradient} bg-opacity-25 hover:bg-opacity-40 transition-all duration-300 shadow-xl shadow-purple-500/30 p-4 relative overflow-hidden`}
+                                  className={`w-32 h-32 md:w-48 md:h-48 rounded-xl glass border-3 border-purple-500/60 flex flex-col items-center justify-center bg-gradient-to-br ${project.gradient} bg-opacity-25 hover:bg-opacity-40 transition-all duration-300 shadow-xl shadow-purple-500/30 p-3 md:p-4 relative overflow-hidden`}
                                 >
                                   {/* Glow effect */}
                                   <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 hover:opacity-20 transition-opacity duration-300`} />
                                   
                                   {/* Node Content */}
                                   <div className="text-center w-full relative z-10">
-                                    <div className="text-4xl md:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                                    <div className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-3 drop-shadow-lg">
                                       {project.id}
                                     </div>
                                     <div className="text-xs md:text-sm text-purple-100 font-semibold leading-tight px-2 line-clamp-2">
@@ -350,9 +397,9 @@ export default function ProjectsPage() {
                                   
                                 </div>
                                 
-                                {/* Hover Tooltip */}
+                                {/* Hover Tooltip - Hidden on mobile */}
                                 <motion.div
-                                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-80 text-center pointer-events-none z-30"
+                                  className="hidden md:block absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-80 text-center pointer-events-none z-30"
                                   initial={{ opacity: 0, y: -10 }}
                                   whileHover={{ opacity: 1, y: 0 }}
                                   transition={{ duration: 0.2 }}
@@ -371,22 +418,23 @@ export default function ProjectsPage() {
                             {/* Workflow Edge/Connection */}
                             {index < projects.length - 1 && (
                               <motion.div
-                                className="relative flex items-center mx-2 md:mx-4 z-0"
-                                initial={{ opacity: 0, scaleX: 0 }}
-                                animate={{ opacity: 1, scaleX: 1 }}
+                                className="relative flex items-center my-2 md:my-0 md:mx-4 z-0"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
                                 transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                               >
-                                {/* Connection Line */}
-                                <div className="relative w-16 md:w-24 h-2 overflow-hidden">
+                                {/* Mobile: Vertical Line, Desktop: Horizontal Line */}
+                                <div className="relative w-2 h-12 md:w-24 md:h-2 overflow-hidden">
                                   {/* Main gradient line with glow */}
-                                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full shadow-lg shadow-purple-500/70" />
-                                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-full blur-sm opacity-50" />
+                                  <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full shadow-lg shadow-purple-500/70" />
+                                  <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-full blur-sm opacity-50" />
                                   
-                                  {/* Animated flow effect - moves from start to end, then resets */}
+                                  {/* Animated flow effect - Vertical on mobile, Horizontal on desktop */}
                                   <motion.div
                                     className="absolute top-0 left-0 w-full h-full"
-                                    initial={{ x: '-100%' }}
+                                    initial={{ y: '-100%', x: '-100%' }}
                                     animate={{ 
+                                      y: ['-100%', '100%'],
                                       x: ['-100%', '100%']
                                     }}
                                     transition={{ 
@@ -397,12 +445,12 @@ export default function ProjectsPage() {
                                       delay: index * 0.5
                                     }}
                                   >
-                                    <div className="w-full h-full bg-gradient-to-r from-transparent via-white/90 to-transparent rounded-full" />
+                                    <div className="w-full h-full bg-gradient-to-b md:bg-gradient-to-r from-transparent via-white/90 to-transparent rounded-full" />
                                   </motion.div>
                                   
-                                  {/* Arrow head - properly aligned */}
-                                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-full">
-                                    <div className="w-0 h-0 border-l-[10px] border-l-pink-500 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent drop-shadow-xl" />
+                                  {/* Arrow head - Vertical on mobile, Horizontal on desktop */}
+                                  <div className="absolute bottom-0 md:bottom-auto md:right-0 left-1/2 md:left-auto md:top-1/2 transform -translate-x-1/2 md:translate-x-full md:-translate-y-1/2 translate-y-full md:translate-y-0">
+                                    <div className="w-0 h-0 border-t-[10px] md:border-t-[5px] md:border-l-[10px] border-t-pink-500 md:border-l-pink-500 border-b-0 md:border-b-[5px] border-b-transparent md:border-b-transparent border-l-0 md:border-r-0 border-r-0 md:border-r-transparent drop-shadow-xl" />
                                   </div>
                                 </div>
                               </motion.div>

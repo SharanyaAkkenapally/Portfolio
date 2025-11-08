@@ -1,14 +1,16 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; vx: number; vy: number }>>([]);
   const animationFrameRef = useRef<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Check if we're in the browser
@@ -125,7 +127,9 @@ export default function Home() {
           >
             Portfolio
           </motion.div>
-          <div className="flex gap-2 md:gap-4 lg:gap-6 flex-wrap justify-end">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-4 lg:gap-6">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -135,7 +139,7 @@ export default function Home() {
               >
                 <Link
                   href={item.href}
-                  className="relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-sm md:text-base"
+                  className="relative text-gray-300 hover:text-purple-400 transition-colors duration-300 group text-base"
                 >
                   {item.name}
                   <motion.span
@@ -146,7 +150,48 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </motion.div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 overflow-hidden"
+            >
+              <div className="glass rounded-lg border border-purple-500/20 p-4 space-y-3">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="block text-gray-300 hover:text-purple-400 transition-colors duration-300 py-2 text-base"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
