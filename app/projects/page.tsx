@@ -291,7 +291,7 @@ export default function ProjectsPage() {
                                     {project.technologies.map((tech) => (
                                       <span
                                         key={tech}
-                                        className="px-2 py-1 text-xs rounded glass border border-purple-500/20 text-gray-400"
+                                        className="px-2 py-1 text-xs rounded glass border border-purple-500/20 text-white"
                                       >
                                         {tech}
                                       </span>
@@ -527,7 +527,7 @@ export default function ProjectsPage() {
                                   {project.technologies.map((tech) => (
                                     <span
                                       key={tech}
-                                      className="px-3 py-1 rounded-lg glass border border-purple-500/30 text-sm text-gray-300"
+                                      className="px-3 py-1 rounded-lg glass border border-purple-500/30 text-sm text-white"
                                     >
                                       {tech}
                                     </span>
