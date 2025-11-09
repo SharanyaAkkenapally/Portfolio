@@ -16,7 +16,6 @@ const hobbies = [
     images: [
       { src: '/hobbies/IMG_0531.jpg', alt: 'Homemade dish' },
       { src: '/hobbies/IMG_0623.jpg', alt: 'Cooking preparation' },
-      { src: '/hobbies/IMG_0673.jpg', alt: 'Finished meal' },
       { src: '/hobbies/IMG_0753.jpg', alt: 'Delicious creation' },
       { src: '/hobbies/IMG_4154.jpg', alt: 'Delicious food' },
       { src: '/hobbies/IMG_2108.jpg', alt: 'Culinary creation' },
