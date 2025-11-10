@@ -275,16 +275,13 @@ export default function Home() {
             >
               <div className="glass rounded-xl p-8 border border-purple-500/20">
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  Hi, Welcome to my profile! My journey in the world of <span className="text-purple-400 font-semibold">Artificial Intelligence</span> began with a spark of curiosity. Ever since my first AI workshop, I've been on this exciting journey to explore the endless possibilities of AI.
+                  I'm a <span className="text-purple-400 font-semibold">Data Scientist</span> with a passion for building and deploying AI-driven solutions that solve complex, real-world problems. I specialize in Machine Learning, Deep Learning, NLP, and Generative AI, transforming data into actionable insights.
                 </p>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  I'm a <span className="text-purple-400 font-semibold">Data Scientist</span> with a passion for building and deploying AI-driven solutions that solve complex, real-world problems. With a strong foundation in Machine Learning, Deep Learning, Natural Language Processing (NLP), and Generative AI, I specialize in transforming data into actionable insights that drive meaningful impact.
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  I excel at building end-to-end AI solutions, from designing scalable data pipelines to deploying machine learning models. I have a particular interest in developing automated workflows, fine-tuning LLMs, and leveraging cloud platforms to optimize data processing and model deployment.
+                  I excel at building end-to-end AI solutions, from scalable data pipelines to model deployment. I'm particularly interested in automated workflows, fine-tuning LLMs, and leveraging cloud platforms for optimized data processing.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
-                  Currently, I'm working at <span className="text-purple-400 font-semibold">Draft & Goal</span> as a Data Scientist, focusing on building AI agentic workflows to automate content marketing. This experience has deepened my appreciation for the power of AI-driven automation and the potential of intelligent agents to significantly boost operational efficiency and scalability.
+                  Currently, I'm working at <span className="text-purple-400 font-semibold">Draft & Goal</span> as a Data Scientist, building AI agentic workflows to automate content marketing and boost operational efficiency.
                 </p>
               </div>
             </motion.div>
