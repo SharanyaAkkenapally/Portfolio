@@ -280,26 +280,6 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Bio Section */}
-            <motion.div
-              className="max-w-4xl mx-auto mb-12 px-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              <div className="glass rounded-xl p-8 border border-purple-500/20">
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  I'm a <span className="text-purple-400 font-semibold">Data Scientist</span> with a passion for building and deploying AI-driven solutions that solve complex, real-world problems. I specialize in Machine Learning, Deep Learning, NLP, and Generative AI, transforming data into actionable insights.
-                </p>
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  I excel at building end-to-end AI solutions, from scalable data pipelines to model deployment. I'm particularly interested in automated workflows, fine-tuning LLMs, and leveraging cloud platforms for optimized data processing.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Currently, I'm working at <span className="text-purple-400 font-semibold">Draft & Goal</span> as a Data Scientist, building AI agentic workflows to automate content marketing and boost operational efficiency.
-                </p>
-              </div>
-            </motion.div>
-
             {/* Skills Section */}
             <motion.div
               className="max-w-6xl mx-auto mb-20 px-6"
