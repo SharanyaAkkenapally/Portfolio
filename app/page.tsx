@@ -223,7 +223,7 @@ export default function Home() {
             </motion.div>
 
             <motion.h1
-              className="text-3xl md:text-5xl mb-10 name-font"
+              className="text-3xl md:text-5xl mb-6 name-font"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -233,6 +233,20 @@ export default function Home() {
               <span className="text-white name-last font-bold">Akkenapally</span>
             </motion.h1>
 
+            {/* Summary Section */}
+            <motion.div
+              className="max-w-4xl mx-auto mb-10 px-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <div className="glass rounded-xl p-6 border border-purple-500/20">
+                <p className="text-gray-300 leading-relaxed text-center text-lg">
+                  AI Engineer building production-ready agentic systems that coordinate autonomous tasks across marketing, SEO, and data workflows. Skilled in architecting multi-agent architectures, reducing operational overhead and enabling scalable automation for enterprise teams.
+                </p>
+              </div>
+            </motion.div>
+
             <motion.div
               className="flex gap-6 justify-center flex-wrap mb-12"
               initial={{ opacity: 0, y: 20 }}
@@ -240,7 +254,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.7 }}
             >
               <motion.a
-                href="/resume.pdf"
+                href="/CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-12 py-5 text-sm bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold text-white shadow-lg shadow-purple-500/50 inline-block"
@@ -308,7 +322,7 @@ export default function Home() {
                   >
                     <h3 className="text-xl font-semibold text-purple-400 mb-3">Programming Languages & Databases</h3>
                     <div className="flex flex-wrap gap-2">
-                      {['Python', 'SQL', 'R', 'Java', 'Data Structures', 'C', 'NoSQL'].map((skill, index) => (
+                      {['Python', 'SQL', 'Java', 'Data Structures', 'C', 'NoSQL'].map((skill, index) => (
                         <motion.span
                           key={skill}
                           className="px-3 py-1.5 bg-purple-500/20 border border-purple-500/40 rounded-lg text-sm text-gray-300 hover:bg-purple-500/30 hover:border-purple-500/60 transition-all"
@@ -332,7 +346,7 @@ export default function Home() {
                   >
                     <h3 className="text-xl font-semibold text-purple-400 mb-3">AI/ML</h3>
                     <div className="flex flex-wrap gap-2">
-                      {['PyTorch', 'Keras', 'TensorFlow', 'Hugging Face', 'Deep learning', 'Generative AI', 'Transformers', 'RAG', 'NLP', 'LLM Fine-Tuning', 'Langchain', 'Scikit-learn', 'EDA', 'AI agents'].map((skill, index) => (
+                      {['PyTorch', 'Keras', 'TensorFlow', 'AI Agents', 'Generative AI', 'Deep learning', 'Transformers', 'RAG', 'NLP', 'LLM Fine-Tuning', 'Langchain', 'Scikit-learn'].map((skill, index) => (
                         <motion.span
                           key={skill}
                           className="px-3 py-1.5 bg-purple-500/20 border border-purple-500/40 rounded-lg text-sm text-gray-300 hover:bg-purple-500/30 hover:border-purple-500/60 transition-all"
@@ -380,7 +394,7 @@ export default function Home() {
                   >
                     <h3 className="text-xl font-semibold text-purple-400 mb-3">Cloud & DevOps</h3>
                     <div className="flex flex-wrap gap-2">
-                      {['Azure ML', 'AWS Sagemaker', 'GCP', 'CI/CD pipelines', 'Git', 'Flask', 'Kubernetes', 'Docker'].map((skill, index) => (
+                      {['Azure', 'AWS', 'GCP', 'CI/CD pipelines', 'Git', 'Flask', 'Kubernetes', 'Docker'].map((skill, index) => (
                         <motion.span
                           key={skill}
                           className="px-3 py-1.5 bg-purple-500/20 border border-purple-500/40 rounded-lg text-sm text-gray-300 hover:bg-purple-500/30 hover:border-purple-500/60 transition-all"

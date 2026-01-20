@@ -16,11 +16,12 @@ const experiences = [
     duration: '10 mos',
     workType: 'Hybrid',
     description: [
-      'Developing and implementing AI solutions to automate complex marketing workflows and content generation processes.',
-      'Designing agentic systems that leverage machine learning algorithms to create scalable, data-driven automation solutions for enterprise clients.',
-      'Building multi-agent workflows that optimize content creation, SEO strategies, and large-scale data processing tasks.',
-      'Collaborating with cross-functional teams to transform traditional manual processes into autonomous AI-powered systems, delivering measurable improvements in efficiency and cost reduction.',
-      'Contributing to the development of no-code platform that enable clients to deploy AI workflows without technical expertise.'
+      'Designed and deployed AI-driven automation workflows, cutting manual content operations by 82% and boosting delivery speed across marketing teams.',
+      'Built multi-agent systems that coordinate autonomous tasks, optimizing SEO and data processing workflows with measurable productivity gains.',
+      'Utilized Claude and Cursor to accelerate AI development cycles by 40%.',
+      'Supported automation initiatives impacting content operations across 20+ enterprise clients.',
+      'Collaborated with cross-functional teams to convert manual workflows into scalable, AI-powered systems, enhancing efficiency and reducing costs.',
+      'Contributed to a no-code AI workflow builder, enabling clients to create and launch agentic systems without requiring technical expertise.'
     ],
     gradient: 'from-purple-600 to-pink-600',
     isCurrent: true,
